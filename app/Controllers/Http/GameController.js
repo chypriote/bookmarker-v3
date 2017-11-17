@@ -2,32 +2,13 @@
 
 const fs = require('fs')
 const getSize = use('App/Managers/ReadSizeRecursive')
+const APIController = use('App/Controllers/Http/APIController')
 
-class GameController {
 
-  async index ({ request, response }) {
-    return [
-      {name: 'Test'},
-      {name: 'Test'},
-      {name: 'Test'},
-      {name: 'Test'},
-    ]
-  }
-  
-  async show ({ request, response }) {
-    response.send(request.params)
-  }
-  
-  async store ({ request, response }) {
-    response.send()
-  }
-  
-  async update ({ request, response }) {
-    response.send(request.params)
-  }
-  
-  async destroy ({ request, response }) {
-    response.send(request.params)
+class GameController extends APIController {
+  constructor() {
+    super()
+    this.TABLE_NAME = 'games'
   }
 
 	async render ({ request, response }) {

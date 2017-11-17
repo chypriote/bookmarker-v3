@@ -1,26 +1,9 @@
 'use strict'
 
-class FrameworkController {
-
-  async index ({ request, response }) {
-    response.send()
-  }
-	
-  async show ({ request, response }) {
-  	return request
-    response.send()
-  }
-	
-  async store ({ request, response }) {
-    response.send()
-  }
-	
-  async update ({ request, response }) {
-    response.send()
-  }
-	
-  async destroy ({ request, response }) {
-    response.send()
+class FrameworkController extends APIController {
+  constructor() {
+    super()
+    this.TABLE_NAME = 'frameworks'
   }
 }
 
