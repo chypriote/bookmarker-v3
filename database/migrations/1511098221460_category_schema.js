@@ -2,9 +2,9 @@
 
 const Schema = use('Schema')
 
-class TagsSchema extends Schema {
+class CategoriesSchema extends Schema {
   up () {
-    this.create('tags', (table) => {
+    this.create('categories', (table) => {
       table.increments()
       table.string('name', 80).notNullable().unique()
       table.timestamps()
@@ -12,8 +12,8 @@ class TagsSchema extends Schema {
   }
 
   down () {
-    this.drop('tags')
+    this.drop('category')
   }
 }
 
-module.exports = TagsSchema
+module.exports = CategoriesSchema

@@ -2,18 +2,19 @@
 
 const Schema = use('Schema')
 
-class GamesSchema extends Schema {
+class TagsSchema extends Schema {
   up () {
-    this.create('games', (table) => {
+    this.create('tags', (table) => {
       table.increments()
       table.string('name', 80).notNullable().unique()
+      table.integer('category_id').unsigned()
       table.timestamps()
     })
   }
 
   down () {
-    this.drop('games')
+    this.drop('tag')
   }
 }
 
-module.exports = GamesSchema
+module.exports = TagsSchema

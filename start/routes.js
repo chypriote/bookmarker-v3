@@ -20,7 +20,7 @@ Route.on('/').render('welcome')
 Route.get('/test', 'GameController.render')
 
 Route.group(() => {
+	Route.resource('categories', 'CategoryController')
 	Route.resource('games', 'GameController')
-	Route.resource('frameworks', 'FrameworkController')
 
 }).prefix('api/v1')

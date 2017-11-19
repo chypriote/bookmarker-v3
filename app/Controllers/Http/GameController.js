@@ -1,31 +1,39 @@
 'use strict'
 
-const fs = require('fs')
-const getSize = use('App/Managers/ReadSizeRecursive')
-const APIController = use('App/Controllers/Http/APIController')
+const Post = use('App/Models/Post')
+const Category = use('App/Models/Category')
 
-
-class GameController extends APIController {
+class GameController {
   constructor() {
-    super()
-    this.TABLE_NAME = 'games'
+    this.category = 1;
   }
 
-	async render ({ request, response }) {
-		const path = './app/'
-    const files = new Array();
+  async index ({ request, response }) {
+    const game = await Category.find(this.category)
+    return await game.posts().fetch()
+  }
 
-    await fs.readdirSync('.').forEach(async (file) => {
-      await getSize(file, (err, content) => {
-        files.push({
-          name: file,
-          size: content
-        })
-      })
-    })
+  async show ({ request, response }) {
+    const game = await Category.find(this.category)
+    return await game.posts().find(request.params.id)
+  }
 
-    response.send(files)
-	}
+  async store ({ request, response }) {
+    const game = new Post()
+    const category = await Category.find(this.category)
+
+    game.name = request.body.name
+
+    return await category.posts().save(game)
+  }
+
+  async update ({ request, response }) {
+    response.send(request.params)
+  }
+
+  async destroy ({ request, response }) {
+    response.send(request.params)
+  }
 }
 
 module.exports = GameController
